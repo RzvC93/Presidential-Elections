@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/login.css}">
+</head>
+<body>
+<h1>Welcome to Presidential Election</h1>
+
+<form action="/login" method="post">
+    <p th:if="${error}" class="error-message" th:text="${error}"></p>
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password" />
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="/signup">Sign up here</a></p>
+</body>
+</html>

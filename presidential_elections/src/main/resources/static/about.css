@@ -1,0 +1,94 @@
+/* about.css */
+
+body {
+    background-color: #f3feff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #777777;
+    font-weight: normal;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    padding: 20px;
+    color: #777777;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f3feff;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f3feff;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 12px 25px;
+    background-color: transparent;
+    color: #777777;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid transparent;
+}
+
+nav a:hover {
+    background-color: #99d2e9;
+    border-color: #99d2e9;
+}
+
+.about-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.project-description p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.team-roles ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-roles li {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.team-roles strong {
+    color: #333333;
+}
+
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info li {
+    font-size: 16px;
+    margin: 10px 0;
+}

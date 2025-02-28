@@ -1,0 +1,88 @@
+/* login.css */
+
+body {
+    background-color: #f3feff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #777777;
+    font-weight: normal;
+    text-align: center;
+}
+
+h1 {
+    color: #777777;
+    padding: 20px;
+    font-size: 28px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+form {
+    background-color: #ffffff;
+    padding: 40px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    width: 90%;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background-color: #f7f7f7;
+    font-size: 18px;
+    color: #777777;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:hover {
+    background-color: #e6f7f7;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    width: 70%;
+    padding: 18px;
+    background-color: transparent;
+    color: #777777;
+    border-radius: 8px;
+    border: 2px solid #777777;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #99d2e9;
+    border-color: #99d2e9;
+}
+
+p {
+    color: #777777;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: #99d2e9;
+}
+
+a:hover {
+    color: #80b3ff;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}

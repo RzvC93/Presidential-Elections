@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" th:href="@{/signup.css}">
+</head>
+<body>
+<h1>Sign Up</h1>
+
+<form action="#" th:action="@{/signup}" method="post">
+
+    <h2>Fill out the form to sign up to our service</h2>
+
+    <p th:if="${error}" class="error-message" th:text="${error}"></p>
+
+
+    <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+    <input type="text" id="username" name="username" placeholder="Username" required />
+    <input type="email" id="email" name="email" placeholder="Email" required />
+    <input type="number" id="age" name="age" placeholder="Age" required />
+
+    <select id="gender" name="gender" required>
+        <option value="" disabled selected>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <input type="text" id="address" name="address" placeholder="Address" required />
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
+    <input type="password" id="password" name="password" placeholder="Password" required />
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+    <button type="submit">Sign Up</button>
+</form>
+
+<p>Already have an account? <a href="/login">Login here</a></p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" th:href="@{/update.css}">
+</head>
+<body>
+<h1>Update Profile</h1>
+
+<nav>
+    <a href="/home">Home</a>
+    <a href="/about">About</a>
+    <a href="/delete-account">Delete account</a>
+    <a href="/logout">Sign Out</a>
+</nav>
+
+<form action="/update" method="post" th:object="${user}">
+
+    <h2>Update your profile details</h2>
+
+    <p th:if="${error}" class="error-message" th:text="${error}"></p>
+
+
+    <div class="successMessage" th:if="${successMessage}">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <input type="text" th:field="*{firstName}" placeholder="First Name" required />
+    <input type="text" th:field="*{lastName}" placeholder="Last Name" required />
+    <input type="text" th:field="*{username}" placeholder="Username" required />
+    <input type="email" th:field="*{email}" placeholder="Email" required />
+    <input type="number" th:field="*{age}" placeholder="Age" required />
+
+    <select th:field="*{gender}" required>
+        <option value="" disabled>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <input type="text" th:field="*{address}" placeholder="Address" required />
+    <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" required />
+
+    <h2>Change Password (Optional)</h2>
+
+    <input type="password" name="oldPassword" placeholder="Current Password"/>
+    <input type="password" name="newPassword" id="newPassword" placeholder="New Password"/>
+    <input type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirm New Password"/>
+
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

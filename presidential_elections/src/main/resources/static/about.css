@@ -1,29 +1,28 @@
-/* about.css */
-
+/* 1. BODY */
 body {
-    background-color: #f3feff;
+    background: url('/images/about.gif') no-repeat center center fixed;
     font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
     color: #777777;
-    font-weight: normal;
 }
 
+/* 2. HEADER - main title */
 h1 {
-    text-align: center;
-    margin-top: 0;
     padding: 20px;
-    color: #777777;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f3feff;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 0;
 }
 
+/* 3. NAVBAR */
 nav {
     display: flex;
     justify-content: center;
     gap: 20px;
     padding: 20px;
-    background-color: #f3feff;
 }
 
 nav a {
@@ -32,10 +31,10 @@ nav a {
     background-color: transparent;
     color: #777777;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
     font-weight: bold;
     font-size: 18px;
     border: 2px solid transparent;
+    transition: background-color 0.3s ease;
 }
 
 nav a:hover {
@@ -43,18 +42,17 @@ nav a:hover {
     border-color: #99d2e9;
 }
 
+
+
+
+
 .about-container {
     width: 90%;
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 100px auto;
+    padding: 20px;
+    background: rgba(249, 249, 249, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-}
-
-section {
-    margin-bottom: 30px;
 }
 
 h2 {
@@ -64,31 +62,3 @@ h2 {
     margin-bottom: 15px;
 }
 
-.project-description p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.team-roles ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.team-roles li {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-.team-roles strong {
-    color: #333333;
-}
-
-.contact-info ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.contact-info li {
-    font-size: 16px;
-    margin: 10px 0;
-}

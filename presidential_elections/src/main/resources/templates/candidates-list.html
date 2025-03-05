@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates List</title>
+    <link rel="stylesheet" href="candidates-list.css">
+</head>
+<body>
+<h1>Candidates List</h1>
+
+<nav>
+    <a href="/home">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/about">About</a>
+    <a href="/update">Update</a>
+    <a href="/candidate-application">Submit your candidacy</a>
+    <a href="/delete-account">Delete account</a>
+    <a href="/logout">Sign Out</a>
+</nav>
+
+<div class="main-container">
+    <h2>Candidates:</h2>
+
+    <a th:if="${error}" class="error-message" th:text="${error}"></a>
+
+    <div class="candidates-list">
+        <div th:each="candidate : ${candidacies}" class="candidate">
+            <div class="profile-card">
+
+                <div class="profile-image">
+                    <img th:src="@{${candidate.profilePicture}}" alt="Profile Picture">
+                </div>
+
+                <div class="candidate-info">
+
+                    <p><strong>Name:</strong>
+                        <span th:if="${candidate.user != null}"
+                              th:text="${candidate.user.firstName + ' ' + candidate.user.middleName + ' ' + candidate.user.lastName}"></span>
+                    </p>
+
+                    <p><strong>Position:</strong> <span th:text="${candidate.position}"></span></p>
+                    <p><strong>Political Party:</strong> <span th:text="${candidate.politicalParty}"></span></p>
+                    <nav>
+                        <a th:href="@{/view-details/{id}(id=${candidate.id})}" class="view-details">Profile</a>
+                        <button type="submit" class="vote">Vote</button>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

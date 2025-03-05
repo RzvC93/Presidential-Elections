@@ -21,11 +21,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated() // All requests require authentication
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/login")
                 )
-                .httpBasic(httpBasic -> {}); // Enable Basic Auth
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(httpBasic -> {})
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/home")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                )
+                .sessionManagement(session -> session
+                        .maximumSessions(1)
+                        .expiredUrl("/login?expired")
+                );
 
         return http.build();
     }

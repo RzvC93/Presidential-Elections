@@ -35,6 +35,7 @@ public class UserService implements IUserService {
 
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
+        user.setMiddleName(userDTO.getMiddleName());
         user.setLastName(userDTO.getLastName());
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
@@ -42,6 +43,7 @@ public class UserService implements IUserService {
         user.setGender(userDTO.getGender());
         user.setAddress(userDTO.getAddress());
         user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setAboutMe(userDTO.getAboutMe());
 
         String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
         user.setPassword(encryptedPassword);
@@ -110,6 +112,7 @@ public class UserService implements IUserService {
         }
 
         user.setFirstName(userDTO.getFirstName());
+        user.setMiddleName(userDTO.getMiddleName());
         user.setLastName(userDTO.getLastName());
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
@@ -117,6 +120,7 @@ public class UserService implements IUserService {
         user.setGender(userDTO.getGender());
         user.setAddress(userDTO.getAddress());
         user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setAboutMe(userDTO.getAboutMe());
 
         userRepository.save(user);
     }

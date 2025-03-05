@@ -7,34 +7,52 @@
     <link rel="stylesheet" th:href="@{/signup.css}">
 </head>
 <body>
-<h1>Sign Up</h1>
+<h1>Get Started with Your Election Profile</h1>
+
+<nav>
+    <a href="/home">Home</a>
+</nav>
 
 <form action="#" th:action="@{/signup}" method="post">
-
     <h2>Fill out the form to sign up to our service</h2>
 
     <p th:if="${error}" class="error-message" th:text="${error}"></p>
 
+    <div class="form-group">
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+        <input type="text" id="middleName" name="middleName" placeholder="Middle Name"/>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+    </div>
 
-    <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
-    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
-    <input type="text" id="username" name="username" placeholder="Username" required />
-    <input type="email" id="email" name="email" placeholder="Email" required />
-    <input type="number" id="age" name="age" placeholder="Age" required />
+    <div class="form-group">
+        <input type="text" id="username" name="username" placeholder="Username" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <input type="number" id="age" name="age" placeholder="Age" required />
+    </div>
 
-    <select id="gender" name="gender" required>
-        <option value="" disabled selected>Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select>
+    <div class="form-group">
+        <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="address" name="address" placeholder="Address" required />
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
+    </div>
 
-    <input type="text" id="address" name="address" placeholder="Address" required />
-    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
-    <input type="password" id="password" name="password" placeholder="Password" required />
-    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+    <h2>About Me:</h2>
+    <textarea name="aboutMe" placeholder="Tell us about yourself..."></textarea>
+
+    <h2>Set your password:</h2>
+    <div class="form-group">
+        <input type="password" id="password" name="password" placeholder="Password" required />
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+    </div>
+
     <button type="submit">Sign Up</button>
 </form>
+
 
 <p>Already have an account? <a href="/login">Login here</a></p>
 </body>

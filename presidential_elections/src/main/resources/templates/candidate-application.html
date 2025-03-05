@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Application Form</title>
+    <link rel="stylesheet" href="candidate-application.css">
+</head>
+<body>
+
+<h1>Candidate Application</h1>
+
+<nav>
+    <a href="/home">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/about">About</a>
+    <a href="/update">Update</a>
+    <a href="/candidates-list">Candidates List</a>
+    <a href="/delete-account">Delete account</a>
+    <a href="/logout">Sign Out</a>
+</nav>
+
+<form action="/candidate-application" method="post">
+    <p th:if="${error}" class="error-message" th:text="${error}"></p>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+    <h3>Please answer the following questions honestly and accurately.
+        Your responses will help us process your candidacy effectively.
+        Thank you for your cooperation!</h3>
+
+    <h2>Political Candidacy Information:</h2>
+
+    <label for="position">Position Title:</label>
+    <select id="position" name="position" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Mayor">Mayor</option>
+        <option value="Counselor">Counselor</option>
+        <option value="President">President</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" placeholder="Provide a brief description about your candidacy" required></textarea>
+
+    <label for="slogan">Slogan:</label>
+    <input type="text" id="slogan" name="slogan" placeholder="Enter your campaign slogan" required />
+
+    <label for="politicalParty">Chose your Political Party:</label>
+    <select id="politicalParty" name="politicalParty" required>
+        <option value="" disabled selected>Select</option>
+        <option value="PSD">PSD</option>
+        <option value="AUR">AUR</option>
+        <option value="PNL">PNL</option>
+        <option value="USR">USR</option>
+        <option value="POT">POT</option>
+        <option value="UDMR">UDMR</option>
+        <option value="OTHER">OTHER</option>
+
+    </select>
+
+    <label for="profilePicture">Profile Picture:</label>
+    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required />
+
+    <h2>Legal Questions</h2>
+    <label for="criminalRecord">Have you ever been convicted of a crime?</label>
+    <select id="criminalRecord" name="criminalRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="arrestRecord">Have you ever been arrested?</label>
+    <select id="arrestRecord" name="arrestRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="investigationRecord">Have you ever been involved in any criminal investigations?</label>
+    <select id="investigationRecord" name="investigationRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="pendingCharges">Do you have any pending criminal charges?</label>
+    <select id="pendingCharges" name="pendingCharges" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="terrorismRecord">Have you ever been involved in any form of terrorism or terrorist activities?</label>
+    <select id="terrorismRecord" name="terrorismRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="bankruptcyRecord">Have you ever been declared bankrupt?</label>
+    <select id="bankruptcyRecord" name="bankruptcyRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="taxDebtRecord">Do you currently owe any unpaid taxes or debts?</label>
+    <select id="taxDebtRecord" name="taxDebtRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="disqualificationRecord">Have you ever been disqualified from holding public office?</label>
+    <select id="disqualificationRecord" name="disqualificationRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="corruptionRecord">Have you ever been involved in any form of bribery or corruption?</label>
+    <select id="corruptionRecord" name="corruptionRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="humanRightsViolation">Have you ever been involved in any human rights violations?</label>
+    <select id="humanRightsViolation" name="humanRightsViolation" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="expulsionRecord">Have you ever been expelled from any organization or institution?</label>
+    <select id="expulsionRecord" name="expulsionRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="organizedCrimeRecord">Have you ever been involved in any organized crime group?</label>
+    <select id="organizedCrimeRecord" name="organizedCrimeRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="fraudRecord">Have you ever been involved in any fraud or financial crimes?</label>
+    <select id="fraudRecord" name="fraudRecord" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label for="legalDisputes">Do you have any ongoing legal disputes or lawsuits?</label>
+    <select id="legalDisputes" name="legalDisputes" required>
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <h2>Terms and Conditions</h2>
+    <textarea id="termsConditions" readonly>
+            Please read and agree to the following terms and conditions:
+            1. You must be a citizen of the country.
+            2. You must not have any criminal record.
+            3. You must be at least 18 years old.
+    </textarea>
+
+    <label for="agreedTerms">I agree to the terms and conditions:</label>
+    <input type="checkbox" id="agreedTerms" name="agreedTerms" required />
+
+    <button type="submit">Submit Candidacy</button>
+</form>
+</body>
+</html>

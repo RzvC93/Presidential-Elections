@@ -3,6 +3,7 @@ package com.example.presidential_elections.dto;
 public class UserDTO {
 
     private String firstName;
+    private String middleName;
     private String lastName;
     private String username;
     private String email;
@@ -10,18 +11,22 @@ public class UserDTO {
     private String gender;
     private String address;
     private String phoneNumber;
+    private String aboutMe;
     private String password;
     private String confirmPassword;
-
     private String oldPassword;
     private String newPassword;
     private String confirmNewPassword;
 
+    public UserDTO() {
+    }
 
-    public UserDTO() {}
-
-    public UserDTO(String firstName, String lastName, String username, String email, Integer age, String gender, String address, String phoneNumber, String password, String confirmPassword) {
+    public UserDTO(String firstName, String middleName, String lastName, String username,
+                   String email, Integer age, String gender, String address, String phoneNumber,
+                   String aboutMe, String password, String confirmPassword, String oldPassword,
+                   String newPassword, String confirmNewPassword) {
         this.firstName = firstName;
+        this.middleName = middleName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
@@ -29,8 +34,12 @@ public class UserDTO {
         this.gender = gender;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.aboutMe = aboutMe;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.oldPassword = oldPassword;
+        this.newPassword = newPassword;
+        this.confirmNewPassword = confirmNewPassword;
     }
 
     public String getFirstName() {
@@ -39,6 +48,14 @@ public class UserDTO {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -97,6 +114,14 @@ public class UserDTO {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -112,7 +137,6 @@ public class UserDTO {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
 
     public String getOldPassword() {
         return oldPassword;

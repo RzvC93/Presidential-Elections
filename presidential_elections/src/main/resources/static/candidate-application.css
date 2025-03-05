@@ -1,6 +1,6 @@
-/* 1. BODY  */
+/* 1. BODY */
 body {
-    background: url('/images/signup.gif') no-repeat center center fixed;
+    background: url('/images/submit.gif') no-repeat center center fixed;
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -60,19 +60,31 @@ form {
     align-items: center;
 }
 
-/* 5. form group */
-.form-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 15px;
+h2 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #4a4a4a;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-/* 6. Input & Select */
+h3 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+
+/* 5. INPUT SELECT */
 input, select {
     flex: 1;
-    min-width: 200px;
+    min-width: 500px;
     padding: 15px;
     margin: 5px;
     border-radius: 10px;
@@ -81,21 +93,33 @@ input, select {
     box-sizing: border-box;
 }
 
-
-
-/* 7. Textarea */
+/* 6. TEXTAREA */
 textarea {
     width: 80%;
-    height: 350px;
+    height: 150px;
     resize: none;
     font-weight: bold;
     font-size: 16px;
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(243, 254, 255, 0.5);
+    align-self: center;
 }
 
-/* 8. Button */
+
+
+/* 7. LABEL */
+label {
+    font-size: 16px;
+    color: #777777;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+/* 8. BUTTON */
 button {
     width: 40%;
     padding: 15px;
@@ -113,21 +137,22 @@ button:hover {
     border-color: #99d2e9;
 }
 
-/* 9. error-message */
+/* 9. ERROR MESSAGE */
 .error-message {
     color: red;
     font-weight: bold;
     font-size: 16px;
 }
 
-/* 10. Responsiveness */
+/* 10. RESPONSIVENESS */
 @media (max-width: 900px) {
     .form-group {
         flex-direction: column;
         align-items: center;
     }
 
-    input, select {
-        width: 100%;
+    .form-field {
+        flex: 1 1 80%;
+        min-width: 100%;
     }
 }

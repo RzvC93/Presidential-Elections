@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" th:href="@{/home.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" th:href="@{/home.css}">
 </head>
 <body>
-<h1>Welcome to your profile!</h1>
+
+<h1>Welcome to the Presidential Elections!</h1>
+
 <nav>
-    <a href="/home">Home</a>
+  <div th:if="${session.loggedInUser}">
+    <a href="/profile">Profile</a>
     <a href="/about">About</a>
     <a href="/update">Update</a>
+    <a href="/candidate-application">Submit your candidacy</a>
+    <a href="/candidates-list">Candidates List</a>
     <a href="/delete-account">Delete account</a>
     <a href="/logout">Sign Out</a>
+  </div>
+
+  <div th:unless="${session.loggedInUser}">
+    <a href="/login">Login</a>
+    <a href="/signup">Sign Up</a>
+  </div>
 </nav>
+
+<div class="description">
+  <p>Here you can see the list of candidates and vote for your favorite.</p>
+  <p>To vote or view candidate profiles, please log in.</p>
+  <p>Your vote matters. Each vote has the power to shape the future. Your participation in this election helps create a fair and representative leadership.</p>
+  <p>Ready to make your voice heard? Join now and participate in a fair and transparent election process. Log in or create an account to get started!</p>
+  <p><small>We respect your data privacy. Your personal information is protected according to GDPR regulations.</small></p>
+</div>
+
+<div class="top-candidate">
+  <p>Top Candidates:</p>
+</div>
+
 </body>
 </html>

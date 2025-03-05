@@ -18,7 +18,12 @@ public class User {
             strategy = GenerationType.SEQUENCE
     )
     private Long id;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Candidacy candidacy;
+
     private String firstName;
+    private String middleName;
     private String lastName;
     private String username;
     private String email;
@@ -26,12 +31,13 @@ public class User {
     private String gender;
     private String address;
     private String phoneNumber;
-    private String password;
-    private LocalDateTime createdAt;
 
-    public User() {
-        this.createdAt = LocalDateTime.now();
-    }
+    @Column(length = 1000)
+    private String aboutMe;
+    private String password;
+
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public Long getId() {
         return id;
@@ -47,6 +53,14 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -103,6 +117,14 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
     }
 
     public String getPassword() {

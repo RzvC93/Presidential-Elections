@@ -7,7 +7,11 @@
     <link rel="stylesheet" th:href="@{/login.css}">
 </head>
 <body>
-<h1>Welcome to Presidential Election</h1>
+<h1>Access Your Election Dashboard</h1>
+
+<nav>
+    <a href="/home">Home</a>
+</nav>
 
 <form action="/login" method="post">
     <p th:if="${error}" class="error-message" th:text="${error}"></p>

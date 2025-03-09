@@ -1,6 +1,6 @@
 /* 1. BODY */
 body {
-    background: url('/images/update.gif') no-repeat center center fixed;
+    background: url('/images/submit.gif') no-repeat center center fixed;
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -42,6 +42,7 @@ nav a:hover {
     border-color: #99d2e9;
 }
 
+
 /* 4. FORM */
 form {
     background: rgba(249, 249, 249, 0.5);
@@ -59,32 +60,31 @@ form {
     align-items: center;
 }
 
-/* 5. FORM GROUP */
-.form-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 15px;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 200px;
-}
-
-
-.form-field label {
+h2 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #4a4a4a;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-/* 6. Input & Select */
+h3 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+
+/* 5. INPUT SELECT */
 input, select {
     flex: 1;
-    min-width: 200px;
+    min-width: 500px;
     padding: 15px;
     margin: 5px;
     border-radius: 10px;
@@ -93,10 +93,10 @@ input, select {
     box-sizing: border-box;
 }
 
-/* 7. TEXTAREA */
+/* 6. TEXTAREA */
 textarea {
     width: 80%;
-    height: 350px;
+    height: 150px;
     resize: none;
     font-weight: bold;
     font-size: 16px;
@@ -106,6 +106,18 @@ textarea {
     align-self: center;
 }
 
+
+
+/* 7. LABEL */
+label {
+    font-size: 16px;
+    color: #777777;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
 
 /* 8. BUTTON */
 button {
@@ -129,7 +141,8 @@ button:hover {
 .error-message {
     color: red;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
+    text-align: center;
 }
 
 /* 10. RESPONSIVENESS */

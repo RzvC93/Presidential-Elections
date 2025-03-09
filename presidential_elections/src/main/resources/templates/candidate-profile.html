@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidate Profile</title>
-    <link rel="stylesheet" th:href="@{/view-details.css}">
+    <link rel="stylesheet" th:href="@{/candidate-profile.css}">
 </head>
 <body>
 <h1>Welcome to the Candidate profile!</h1>
+
 <nav>
-    <a href="/home">Home</a>
-    <a href="/profile">Profile</a>
-    <a href="/about">About</a>
-    <a href="/update">Update</a>
-    <a href="/candidate-application">Submit your candidacy</a>
-    <a href="/candidates-list">Candidates List</a>
-    <a href="/delete-account">Delete account</a>
-    <a href="/logout">Sign Out</a>
+    <a href="/user/home">Home</a>
+    <a href="/user/about">About</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">User</button>
+        <div class="dropdown-content">
+            <a href="/user/profile">Profile</a>
+            <a href="/user/update-profile">Update Profile</a>
+            <a href="/user/delete-account">Delete Account</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Candidacy</button>
+        <div class="dropdown-content">
+            <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
+            <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
+            <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
+            <a href="/user/candidacy/candidates-list">Candidates List</a>
+        </div>
+    </div>
+
+    <a href="/user/logout">Sign Out</a>
 </nav>
 
 <div class="profile-card">

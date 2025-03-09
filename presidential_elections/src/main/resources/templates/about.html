@@ -4,37 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="/about.css">
 </head>
 <body>
 
 <h1>About Presidential Elections Project</h1>
 
 <nav>
-    <a href="/home">Home</a>
-    <a href="/profile">Profile</a>
-    <a href="/update">Update</a>
-    <a href="/candidate-application">Submit your candidacy</a>
-    <a href="/candidates-list">Candidates List</a>
-    <a href="/delete-account">Delete account</a>
-    <a href="/logout">Sign Out</a>
+    <a href="/user/home">Home</a>
+    <a href="/user/about">About</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">User</button>
+        <div class="dropdown-content">
+            <a href="/user/profile">Profile</a>
+            <a href="/user/update-profile">Update Profile</a>
+            <a href="/user/delete-account">Delete Account</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Candidacy</button>
+        <div class="dropdown-content">
+            <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
+            <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
+            <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
+            <a href="/user/candidacy/candidates-list">Candidates List</a>
+        </div>
+    </div>
+
+    <a href="/user/logout">Sign Out</a>
 </nav>
 
 <div class="about-container">
     <section class="project-description">
         <h2>Project Overview</h2>
-        <p>This project aims to create a transparent and secure platform for the presidential election process. Users can register as voters or candidates, vote for their chosen candidate, and track election results. The goal is to simplify the process of participating in elections and make it more accessible to everyone.</p>
+        <p>This project aims to create a transparent and secure platform for the presidential election process.
+            Users can register as voters or candidates, vote for their chosen candidate, and track election results.
+            The goal is to simplify the process of participating in elections and make it more accessible to
+            everyone.</p>
     </section>
 
     <section class="team-roles">
         <h2>Roles in the Project</h2>
         <p>This project was developed by a dedicated team of individuals with different expertise:</p>
         <ul>
-            <li><strong>Project Manager:</strong> Responsible for overseeing the project, managing deadlines, and ensuring the smooth execution of all phases.</li>
-            <li><strong>Frontend Developer:</strong> In charge of designing and implementing the user interface for the platform.</li>
-            <li><strong>Backend Developer:</strong> Developed the core functionality, including user management, authentication, and the election logic.</li>
-            <li><strong>UI/UX Designer:</strong> Focused on creating a user-friendly and aesthetically pleasing interface for a better user experience.</li>
-            <li><strong>Tester:</strong> Responsible for testing the platform and ensuring that all features function correctly before launch.</li>
+            <li><strong>Project Manager:</strong> Responsible for overseeing the project, managing deadlines, and
+                ensuring the smooth execution of all phases.
+            </li>
+            <li><strong>Frontend Developer:</strong> In charge of designing and implementing the user interface for the
+                platform.
+            </li>
+            <li><strong>Backend Developer:</strong> Developed the core functionality, including user management,
+                authentication, and the election logic.
+            </li>
+            <li><strong>UI/UX Designer:</strong> Focused on creating a user-friendly and aesthetically pleasing
+                interface for a better user experience.
+            </li>
+            <li><strong>Tester:</strong> Responsible for testing the platform and ensuring that all features function
+                correctly before launch.
+            </li>
         </ul>
     </section>
 

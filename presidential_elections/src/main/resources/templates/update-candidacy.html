@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Candidacy</title>
+    <link rel="stylesheet" href="/update-candidacy.css">
+</head>
+<body>
+
+<h1>Update Candidacy!</h1>
+
+<nav>
+    <a href="/user/home">Home</a>
+    <a href="/user/about">About</a>
+    <a href="/user/profile">Profile</a>
+    <a href="/user/update-profile">Update Profile</a>
+    <a href="/user/delete-account">Delete account</a>
+    <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
+    <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
+    <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
+    <a href="/user/candidacy/candidates-list">Candidates List</a>
+    <a href="/user/logout">Sign Out</a>
+</nav>
+
+
+<form action="/user/candidacy/update-candidacy" method="post" th:object="${candidacy}">
+    <p th:if="${error}" class="error-message" th:text="${error}"></p>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+    <h3>Please review and update your candidacy details.
+        Make sure your information is up-to-date to ensure a smooth election process. Thank you!</h3>
+
+    <h2>Political Candidacy Information:</h2>
+
+    <label for="position">Position Title:</label>
+    <select id="position" th:field="*{position}">
+        <option value="" disabled>Select</option>
+        <option value="Mayor">Mayor</option>
+        <option value="Counselor">Counselor</option>
+        <option value="President">President</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}" placeholder="Provide a brief description about your candidacy"></textarea>
+
+    <label for="slogan">Slogan:</label>
+    <input type="text" id="slogan" th:field="*{slogan}" placeholder="Enter your campaign slogan"/>
+
+    <label for="politicalParty">Chose your Political Party:</label>
+    <select id="politicalParty" th:field="*{politicalParty}">
+        <option value="" disabled>Select</option>
+        <option value="PSD">PSD</option>
+        <option value="AUR">AUR</option>
+        <option value="PNL">PNL</option>
+        <option value="USR">USR</option>
+        <option value="POT">POT</option>
+        <option value="UDMR">UDMR</option>
+        <option value="OTHER">OTHER</option>
+    </select>
+
+    <label for="profilePicture">Profile Picture:</label>
+    <input type="file" id="profilePicture" th:field="*{profilePicture}" accept="image/*"/>
+
+    <h2>Terms and Conditions</h2>
+    <textarea id="termsConditions" readonly>
+        Please read and agree to the following terms and conditions:
+        1. You must be a citizen of the country.
+        2. You must not have any criminal record.
+        3. You must be at least 18 years old.
+    </textarea>
+
+    <label for="agreedTerms">I agree to the terms and conditions:</label>
+    <input type="checkbox" id="agreedTerms" th:field="*{agreedTerms}" required/>
+
+    <button type="submit">Update Candidacy</button>
+</form>
+
+</body>
+</html>

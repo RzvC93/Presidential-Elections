@@ -3,6 +3,8 @@ package com.example.presidential_elections.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -21,6 +23,9 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Candidacy candidacy;
+
+    @OneToOne(mappedBy = "voter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Vote vote;
 
     private String firstName;
     private String middleName;

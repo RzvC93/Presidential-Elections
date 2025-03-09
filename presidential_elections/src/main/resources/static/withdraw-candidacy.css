@@ -1,18 +1,19 @@
 /* 1. BODY */
 body {
-    background: url('/images/about.gif') no-repeat center center fixed;
+    background: url('/images/withdraw.gif') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
-    color: #777777;
+    color: #555555;
 }
 
 /* 2. HEADER - main title */
 h1 {
     padding: 20px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin-top: 0;
 }
@@ -71,19 +72,66 @@ nav a:hover, .dropbtn:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover
     display: block;
 }
 
-.about-container {
+/* 4. MAIN CONTAINER */
+.main-container {
+    background: rgba(255, 255, 255, 0.8);
     width: 90%;
-    margin: 200px auto;
+    max-width: 450px;
+    margin: 80px auto;
     padding: 20px;
-    background: rgba(249, 249, 249, 0.5);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-h2 {
-    font-size: 24px;
+/* 5. WARNING MESSAGE */
+.warning {
+    color: red;
     font-weight: bold;
-    color: #333333;
-    margin-bottom: 15px;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
+/* 6. ERROR MESSAGE */
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* 7. FORM ELEMENTS */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* 8. SUBMIT BUTTON */
+button.withdraw-candidacy {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button.withdraw-candidacy:hover {
+    background-color: #e55353;
+}

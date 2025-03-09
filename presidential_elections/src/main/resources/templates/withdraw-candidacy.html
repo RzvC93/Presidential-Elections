@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account</title>
-    <link rel="stylesheet" href="/delete-account.css">
+    <title>Withdraw Candidacy</title>
+    <link rel="stylesheet" href="/withdraw-candidacy.css">
 </head>
 <body>
 
-<h1>Delete Your Account</h1>
+<h1>Withdraw Candidacy</h1>
 
 <nav>
     <a href="/user/home">Home</a>
@@ -36,17 +36,25 @@
     <a href="/user/logout">Sign Out</a>
 </nav>
 
-<div class="delete-container">
-    <form action="/user/delete-account" method="post">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+<div class="main-container">
 
-        <p class="warning">Warning: Deleting your account is irreversible. All your data will be permanently
-            removed.</p>
+
+
+    <form action="/user/candidacy/withdraw-candidacy" method="post">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <p class="warning">Warning: Withdrawing your candidacy is irreversible.
+            You will no longer be considered for the election, and your application will be permanently removed.</p>
+
         <label for="username">Confirm your username:</label>
         <p th:if="${error}" class="error-message" th:text="${error}"></p>
         <input type="text" id="username" name="username" placeholder="Enter your username" required>
-        <button type="submit" class="delete-button">Delete Account</button>
+
+        <button type="submit" class="withdraw-candidacy">Withdraw Candidacy</button>
     </form>
+
+
+
+
 </div>
 </body>
 </html>

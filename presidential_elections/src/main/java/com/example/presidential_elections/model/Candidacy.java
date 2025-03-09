@@ -3,9 +3,11 @@ package com.example.presidential_elections.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "candidacy")
-
 public class Candidacy {
     @Id
     @SequenceGenerator(
@@ -21,6 +23,9 @@ public class Candidacy {
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
     private User user;
+
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vote> votes = new ArrayList<>();
 
     private  String name;
     private String position;
@@ -46,6 +51,11 @@ public class Candidacy {
     private String organizedCrimeRecord;
     private String fraudRecord;
     private String legalDisputes;
+
+    @Transient
+    private int voteCount;
+
+
 
     public Candidacy() {}
 
@@ -253,5 +263,16 @@ public class Candidacy {
 
     public void setLegalDisputes(String legalDisputes) {
         this.legalDisputes = legalDisputes;
+    }
+
+
+
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 }

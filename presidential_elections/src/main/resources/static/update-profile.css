@@ -1,6 +1,6 @@
-/* 1. BODY  */
+/* 1. BODY */
 body {
-    background: url('/images/signup.gif') no-repeat center center fixed;
+    background: url('/images/update.gif') no-repeat center center fixed;
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
@@ -25,23 +25,51 @@ nav {
     padding: 20px;
 }
 
-nav a {
+nav a, .dropbtn {
     text-decoration: none;
-    padding: 12px 25px;
     background-color: transparent;
     color: #777777;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-radius: 10px;
     font-weight: bold;
-    font-size: 18px;
-    border: 2px solid transparent;
-    transition: background-color 0.3s ease;
+    font-size: 22px;
+    border: none;
 }
 
-nav a:hover {
+nav a:hover, .dropbtn:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover {
     background-color: #99d2e9;
     border-color: #99d2e9;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 /* 4. FORM */
 form {
@@ -60,13 +88,26 @@ form {
     align-items: center;
 }
 
-/* 5. form group */
+/* 5. FORM GROUP */
 .form-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
     gap: 15px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+
+.form-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 /* 6. Input & Select */
@@ -81,9 +122,7 @@ input, select {
     box-sizing: border-box;
 }
 
-
-
-/* 7. Textarea */
+/* 7. TEXTAREA */
 textarea {
     width: 80%;
     height: 350px;
@@ -93,9 +132,11 @@ textarea {
     padding: 15px;
     border-radius: 10px;
     background-color: rgba(243, 254, 255, 0.5);
+    align-self: center;
 }
 
-/* 8. Button */
+
+/* 8. BUTTON */
 button {
     width: 40%;
     padding: 15px;
@@ -113,7 +154,7 @@ button:hover {
     border-color: #99d2e9;
 }
 
-/* 9. error-message */
+/* 9. ERROR MESSAGE */
 .error-message {
     color: red;
     font-weight: bold;
@@ -121,14 +162,15 @@ button:hover {
     text-align: center;
 }
 
-/* 10. Responsiveness */
+/* 10. RESPONSIVENESS */
 @media (max-width: 900px) {
     .form-group {
         flex-direction: column;
         align-items: center;
     }
 
-    input, select {
-        width: 100%;
+    .form-field {
+        flex: 1 1 80%;
+        min-width: 100%;
     }
 }

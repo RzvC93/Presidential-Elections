@@ -21,21 +21,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/login")
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/user/signup", "/user/login")
                 )
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated()
                 )
                 .httpBasic(httpBasic -> {})
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/home")
+                        .logoutUrl("/user/logout")
+                        .logoutSuccessUrl("/user/home")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                 )
                 .sessionManagement(session -> session
                         .maximumSessions(1)
-                        .expiredUrl("/login?expired")
+                        .expiredUrl("/user/login?expired")
                 );
 
         return http.build();

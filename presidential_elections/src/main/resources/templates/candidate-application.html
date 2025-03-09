@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidate Application Form</title>
-    <link rel="stylesheet" href="candidate-application.css">
+    <link rel="stylesheet" href="/candidate-application.css">
 </head>
 <body>
 
 <h1>Candidate Application</h1>
 
 <nav>
-    <a href="/home">Home</a>
-    <a href="/profile">Profile</a>
-    <a href="/about">About</a>
-    <a href="/update">Update</a>
-    <a href="/candidates-list">Candidates List</a>
-    <a href="/delete-account">Delete account</a>
-    <a href="/logout">Sign Out</a>
+    <a href="/user/home">Home</a>
+    <a href="/user/about">About</a>
+    <a href="/user/profile">Profile</a>
+    <a href="/user/update-profile">Update Profile</a>
+    <a href="/user/delete-account">Delete account</a>
+    <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
+    <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
+    <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
+    <a href="/user/candidacy/candidates-list">Candidates List</a>
+    <a href="/user/logout">Sign Out</a>
 </nav>
 
-<form action="/candidate-application" method="post">
+<form action="/user/candidacy/candidate-application" method="post">
     <p th:if="${error}" class="error-message" th:text="${error}"></p>
 
     <input type="hidden" name="_csrf" th:value="${_csrf.token}">
@@ -41,10 +44,11 @@
     </select>
 
     <label for="description">Description:</label>
-    <textarea id="description" name="description" placeholder="Provide a brief description about your candidacy" required></textarea>
+    <textarea id="description" name="description" placeholder="Provide a brief description about your candidacy"
+              required></textarea>
 
     <label for="slogan">Slogan:</label>
-    <input type="text" id="slogan" name="slogan" placeholder="Enter your campaign slogan" required />
+    <input type="text" id="slogan" name="slogan" placeholder="Enter your campaign slogan" required/>
 
     <label for="politicalParty">Chose your Political Party:</label>
     <select id="politicalParty" name="politicalParty" required>
@@ -60,7 +64,7 @@
     </select>
 
     <label for="profilePicture">Profile Picture:</label>
-    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required />
+    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required/>
 
     <h2>Legal Questions</h2>
     <label for="criminalRecord">Have you ever been convicted of a crime?</label>
@@ -170,7 +174,7 @@
     </textarea>
 
     <label for="agreedTerms">I agree to the terms and conditions:</label>
-    <input type="checkbox" id="agreedTerms" name="agreedTerms" required />
+    <input type="checkbox" id="agreedTerms" name="agreedTerms" required/>
 
     <button type="submit">Submit Candidacy</button>
 </form>

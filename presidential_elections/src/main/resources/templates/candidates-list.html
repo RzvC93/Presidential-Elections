@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidates List</title>
-    <link rel="stylesheet" href="candidates-list.css">
+    <link rel="stylesheet" href="/candidates-list.css">
 </head>
 <body>
 <h1>Candidates List</h1>
 
 <nav>
-    <a href="/home">Home</a>
-    <a href="/profile">Profile</a>
-    <a href="/about">About</a>
-    <a href="/update">Update</a>
-    <a href="/candidate-application">Submit your candidacy</a>
-    <a href="/delete-account">Delete account</a>
-    <a href="/logout">Sign Out</a>
+    <a href="/user/home">Home</a>
+    <a href="/user/about">About</a>
+
+    <div class="dropdown">
+        <button class="dropbtn">User</button>
+        <div class="dropdown-content">
+            <a href="/user/profile">Profile</a>
+            <a href="/user/update-profile">Update Profile</a>
+            <a href="/user/delete-account">Delete Account</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Candidacy</button>
+        <div class="dropdown-content">
+            <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
+            <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
+            <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
+            <a href="/user/candidacy/candidates-list">Candidates List</a>
+        </div>
+    </div>
+
+    <a href="/user/logout">Sign Out</a>
 </nav>
 
 <div class="main-container">
@@ -24,7 +40,10 @@
 
     <a th:if="${error}" class="error-message" th:text="${error}"></a>
 
+    <a th:if="${message}" class="message" th:text="${message}"></a>
+
     <div class="candidates-list">
+
         <div th:each="candidate : ${candidacies}" class="candidate">
             <div class="profile-card">
 
@@ -41,16 +60,44 @@
 
                     <p><strong>Position:</strong> <span th:text="${candidate.position}"></span></p>
                     <p><strong>Political Party:</strong> <span th:text="${candidate.politicalParty}"></span></p>
+
                     <nav>
-                        <a th:href="@{/view-details/{id}(id=${candidate.id})}" class="view-details">Profile</a>
-                        <button type="submit" class="vote">Vote</button>
+
+                        <a th:href="@{/user/candidacy/candidate-profile/{id}(id=${candidate.id})}"
+                           class="candidate-profile">Profile</a>
+
+                        <form th:action="@{/vote/{id}(id=${candidate.id})}" method="post">
+                            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                            <button type="submit" class="vote">Vote</button>
+                        </form>
+
                     </nav>
+
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+
+<div class="top-candidate">
+    <p>Top Candidates:</p>
+    <table class="top-candidates-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Votes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="candidate : ${candidacies}">
+            <td th:text="${candidate.user.firstName + ' ' + candidate.user.middleName + ' ' + candidate.user.lastName}"></td>
+            <td th:text="${candidate.voteCount}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>

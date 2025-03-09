@@ -33,6 +33,10 @@ public class UserService implements IUserService {
             throw new RuntimeException("Email '" + userDTO.getEmail() + "' is already in use.");
         }
 
+        if (userDTO.getAge() < 18) {
+            throw new RuntimeException("Registration failed: Age must be 18 or older.");
+        }
+
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
         user.setMiddleName(userDTO.getMiddleName());

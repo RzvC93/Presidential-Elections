@@ -17,10 +17,10 @@ public class UserService implements IUserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // signup
+    // ===================== AUTH =====================
+
     @Override
     public User registerUser(UserDTO userDTO) {
-
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             throw new RuntimeException("Passwords do not match.");
         }
@@ -57,46 +57,47 @@ public class UserService implements IUserService {
         return user;
     }
 
-    // login
-    @Override
-    public User findByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        return user;
-    }
-
     @Override
     public User loginUser(String username, String password) {
-
         if (username.isEmpty() || password.isEmpty()) {
-            throw new RuntimeException("Please enter both username and password");
+            throw new RuntimeException("Please enter both username and password.");
         }
 
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
-            throw new RuntimeException("Incorrect username");
+            throw new RuntimeException("Incorrect username.");
         }
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Incorrect password");
+            throw new RuntimeException("Incorrect password.");
         }
+
         return user;
     }
 
-    // update
+    // ===================== PROFILE UPDATE =====================
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     @Override
     public void updateUser(String loggedInUsername, UserDTO userDTO) {
-
         User user = userRepository.findByUsername(loggedInUsername);
+
         if (user == null) {
             throw new RuntimeException("User not found.");
         }
 
-        if (!user.getUsername().equals(userDTO.getUsername()) && userRepository.findByUsername(userDTO.getUsername()) != null) {
+        if (!user.getUsername().equals(userDTO.getUsername()) &&
+                userRepository.findByUsername(userDTO.getUsername()) != null) {
             throw new RuntimeException("Username is already taken.");
         }
 
-        if (!user.getEmail().equals(userDTO.getEmail()) && userRepository.findByEmail(userDTO.getEmail()) != null) {
+        if (!user.getEmail().equals(userDTO.getEmail()) &&
+                userRepository.findByEmail(userDTO.getEmail()) != null) {
             throw new RuntimeException("Email is already in use.");
         }
 
@@ -109,6 +110,7 @@ public class UserService implements IUserService {
                 if (!userDTO.getNewPassword().equals(userDTO.getConfirmNewPassword())) {
                     throw new RuntimeException("New passwords do not match.");
                 }
+
                 user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
             }
         } else {
@@ -129,11 +131,10 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+    // ===================== DELETE =====================
 
-    // delete
     @Override
     public void deleteUser(String inputUsername, String loggedInUsername) {
-
         if (!inputUsername.equals(loggedInUsername)) {
             throw new RuntimeException("You can only delete your own account.");
         }

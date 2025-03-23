@@ -7,16 +7,16 @@ import java.util.Optional;
 
 public interface IUserService {
 
-    // signup
+    // ===================== AUTH =====================
     User registerUser(UserDTO userDTO);
 
-    // login
-    User findByUsername(String username);
     User loginUser(String username, String password);
 
-    // update
+    // ===================== PROFILE =====================
+    User findByUsername(String username);
+
     void updateUser(String loggedInUsername, UserDTO userDTO);
 
-    // delete
+    // ===================== DELETE =====================
     void deleteUser(String inputUsername, String loggedInUsername);
 }

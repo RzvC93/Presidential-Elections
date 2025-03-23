@@ -2,6 +2,7 @@ package com.example.presidential_elections.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +28,11 @@ public class Candidacy {
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vote> votes = new ArrayList<>();
 
-    private  String name;
+    private String name;
     private String position;
 
     @Column(columnDefinition = "TEXT", length = 300)
     private String description;
-
     private String slogan;
     private String politicalParty;
     private String profilePicture;
@@ -55,17 +55,17 @@ public class Candidacy {
     @Transient
     private int voteCount;
 
+    public Candidacy() {
+    }
 
-
-    public Candidacy() {}
-
-    public Candidacy(Long id, User user, String position, String description, String slogan, String politicalParty,
+    public Candidacy(Long id, String name, User user, String position, String description, String slogan, String politicalParty,
                      String profilePicture, boolean agreedTerms, String criminalRecord, String arrestRecord,
                      String investigationRecord, String pendingCharges, String terrorismRecord,
                      String bankruptcyRecord, String taxDebtRecord, String disqualificationRecord,
                      String corruptionRecord, String humanRightsViolation, String expulsionRecord,
-                     String organizedCrimeRecord, String fraudRecord, String legalDisputes) {
+                     String organizedCrimeRecord, String fraudRecord, String legalDisputes, int voteCount) {
         this.id = id;
+        this.name = name;
         this.user = user;
         this.position = position;
         this.description = description;
@@ -87,10 +87,19 @@ public class Candidacy {
         this.organizedCrimeRecord = organizedCrimeRecord;
         this.fraudRecord = fraudRecord;
         this.legalDisputes = legalDisputes;
+        this.voteCount = voteCount;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setId(Long id) {
@@ -264,9 +273,6 @@ public class Candidacy {
     public void setLegalDisputes(String legalDisputes) {
         this.legalDisputes = legalDisputes;
     }
-
-
-
 
     public int getVoteCount() {
         return voteCount;

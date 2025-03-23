@@ -4,10 +4,12 @@ import com.example.presidential_elections.model.Candidacy;
 import com.example.presidential_elections.model.User;
 import com.example.presidential_elections.service.CandidacyService;
 import com.example.presidential_elections.service.UserService;
+import com.example.presidential_elections.service.VoteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,13 +19,15 @@ public class CandidacyControler {
 
     private final CandidacyService candidacyService;
     private final UserService userService;
+    private final VoteService voteService;
 
-    public CandidacyControler(CandidacyService candidacyService, UserService userService) {
+    public CandidacyControler(CandidacyService candidacyService, UserService userService, VoteService voteService) {
         this.candidacyService = candidacyService;
         this.userService = userService;
+        this.voteService = voteService;
     }
 
-    // candidate app
+    // ========== 1. Candidate Application ==========
     @GetMapping("/candidate-application")
     public String showCandidateApplication() {
         return "candidate-application";
@@ -49,107 +53,74 @@ public class CandidacyControler {
                                        @RequestParam String organizedCrimeRecord,
                                        @RequestParam String fraudRecord,
                                        @RequestParam String legalDisputes,
-                                       @RequestParam String profilePicture,
+                                       @RequestParam("profilePicture") MultipartFile profilePicture,
                                        HttpSession session, Model model) {
 
         String loggedInUsername = (String) session.getAttribute("loggedInUser");
 
         try {
-            candidacyService.submitCandidacy(loggedInUsername, position, description, slogan, politicalParty, agreedTerms,
+            candidacyService.submitCandidacy(
+                    loggedInUsername, position, description, slogan, politicalParty, agreedTerms,
                     criminalRecord, arrestRecord, investigationRecord, pendingCharges, terrorismRecord,
                     bankruptcyRecord, taxDebtRecord, disqualificationRecord, corruptionRecord, humanRightsViolation,
-                    expulsionRecord, organizedCrimeRecord, fraudRecord, legalDisputes, profilePicture);
+                    expulsionRecord, organizedCrimeRecord, fraudRecord, legalDisputes, profilePicture
+            );
 
-            model.addAttribute("error", "Candidacy submitted successfully!");
+            model.addAttribute("success", "Candidacy submitted successfully!");
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
         }
         return "candidate-application";
     }
 
-    // update candidacy
+    // ========== 2. Update Candidacy ==========
     @GetMapping("/update-candidacy")
     public String showUpdateCandidacy(Model model, HttpSession session) {
         String loggedInUsername = (String) session.getAttribute("loggedInUser");
-
         Candidacy existingCandidacy = candidacyService.findByUserUsername(loggedInUsername);
-
         model.addAttribute("candidacy", existingCandidacy);
         return "update-candidacy";
     }
 
-
     @PostMapping("/update-candidacy")
-    public String updateCandidacy(@ModelAttribute ("candidacy") Candidacy candidacy, Model model, HttpSession session) {
-
+    public String updateCandidacy(@ModelAttribute("candidacy") Candidacy candidacy, Model model, HttpSession session) {
         try {
             String loggedInUsername = (String) session.getAttribute("loggedInUser");
-
             candidacyService.updateCandidacy(loggedInUsername, candidacy);
-
-            model.addAttribute("error", "Candidacy updated successfully!");
-
+            model.addAttribute("success", "Candidacy updated successfully!");
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
         }
         return "update-candidacy";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // withdraw candidacy
+    // ========== 3. Withdraw Candidacy ==========
     @GetMapping("/withdraw-candidacy")
-    public String showWithdrawForm(Model model) {
-        model.addAttribute("candidacy", new Candidacy());
+    public String showWithdrawCandidacyPage() {
         return "withdraw-candidacy";
     }
 
     @PostMapping("/withdraw-candidacy")
-    public String withdrawCandidacy(@RequestParam String username, HttpSession session, Model model) {
+    public String withdrawCandidacy(HttpSession session, Model model) {
+        String loggedInUsername = (String) session.getAttribute("loggedInUser");
         try {
-            String loggedInUsername = (String) session.getAttribute("loggedInUser");
-
-            candidacyService.withdrawCandidacy(username ,loggedInUsername);
-            return "redirect:/user/candidacy/candidates-list";
-        } catch (Exception e) {
+            candidacyService.withdrawCandidacy(loggedInUsername);
+            model.addAttribute("success", "Candidacy withdrawn successfully!");
+        } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
-            return "withdraw-candidacy";
         }
+        return "withdraw-candidacy";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // candidates list
+    // ========== 4. View All Candidates ==========
     @GetMapping("/candidates-list")
     public String showCandidateList(HttpSession session, Model model) {
         String loggedInUsername = (String) session.getAttribute("loggedInUser");
 
         Candidacy candidacy = candidacyService.findByUserUsername(loggedInUsername);
-
         if (candidacy == null) {
-            model.addAttribute("error", "You have not applied for candidacy yet." +
-                    " To apply for candidacy, visit the Submit your candidacy page!");
+            model.addAttribute("error",
+                    "You have not applied for candidacy yet. To apply, visit the application page.");
         }
 
         List<Candidacy> allCandidacies = candidacyService.getAllCandidacies();
@@ -161,12 +132,11 @@ public class CandidacyControler {
         return "candidates-list";
     }
 
-    // candidates profile
+    // ========== 5. Candidate Profile ==========
     @GetMapping("/candidate-profile/{id}")
     public String showViewDetails(@PathVariable Long id, Model model) {
         Candidacy candidacy = candidacyService.findById(id);
         User user = candidacy.getUser();
-
         model.addAttribute("candidacy", candidacy);
         model.addAttribute("user", user);
 

@@ -27,13 +27,16 @@ public class Vote {
     @JoinColumn(name = "candidate_id", nullable = false)
     private Candidacy candidate;
 
+    @Column(nullable = false)
+    private int round;
     private LocalDateTime timestamp;
 
     public Vote() {
     }
 
-    public Vote(Long id, User voter, Candidacy candidate, LocalDateTime timestamp) {
+    public Vote(Long id, int round, User voter, Candidacy candidate, LocalDateTime timestamp) {
         this.id = id;
+        this.round = round;
         this.voter = voter;
         this.candidate = candidate;
         this.timestamp = timestamp;
@@ -45,6 +48,14 @@ public class Vote {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
     }
 
     public User getVoter() {
@@ -71,4 +82,3 @@ public class Vote {
         this.timestamp = timestamp;
     }
 }
-

@@ -1,160 +1,70 @@
-/* 1. BODY */
+/* -------------------- GENERAL -------------------- */
+
 body {
-    background: url('/images/update.gif') no-repeat center center fixed;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    background-color: rgb(240, 240, 240) !important;
+    font-family: 'Arial';
+    color: #333;
     margin: 0;
     padding: 0;
-    color: #777777;
 }
 
-/* 2. HEADER - main title */
 h1 {
-    padding: 20px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin-top: 0;
-}
-
-/* 3. NAVBAR */
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-nav a, .dropbtn {
-    text-decoration: none;
-    background-color: transparent;
-    color: #777777;
-    padding: 15px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 22px;
-    border: none;
-}
-
-nav a:hover, .dropbtn:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover {
-    background-color: #99d2e9;
-    border-color: #99d2e9;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    min-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 10px;
     text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 40px 0 40px;
+    color: #8e8e8e !important;
 }
 
-.dropdown-content a {
-    color: white;
+/* -------------------- NAVBAR -------------------- */
+
+.navbar {
+    margin-top: 0px;
+    background-color: #333333 !important;
     padding: 15px 30px;
-    text-decoration: none;
-    display: block;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* 4. FORM */
-form {
-    background: rgba(249, 249, 249, 0.5);
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    gap: 20px;
-    margin: 100px auto;
-
-    width: 800px;
-    max-width: 70%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* 5. FORM GROUP */
-.form-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 15px;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 200px;
-}
-
-
-.form-field label {
+.navbar .nav-link {
+    color: #e0e0e0 !important;
     font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* 6. Input & Select */
-input, select {
-    flex: 1;
-    min-width: 200px;
-    padding: 15px;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: rgba(243, 254, 255, 0.5);
+    margin-left: 10px;
     font-size: 20px;
-    box-sizing: border-box;
 }
 
-/* 7. TEXTAREA */
-textarea {
-    width: 80%;
-    height: 350px;
-    resize: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 15px;
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
     border-radius: 10px;
-    background-color: rgba(243, 254, 255, 0.5);
-    align-self: center;
+}
+
+.dropdown-menu {
+    background-color: #333333 !important;
+    border: none !important;
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    background-color: #333333 !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px;
 }
 
 
-/* 8. BUTTON */
-button {
-    width: 40%;
-    padding: 15px;
-    margin: 20px auto;
-    background-color: #e6f7f7;
-    color: #777777;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.navbar-toggler-icon {
+    background-color: #e0e0e0 !important;
 }
 
 button:hover {
-    background-color: #99d2e9;
+    background-color: #e0e0e0 !important;
     border-color: #99d2e9;
 }
 
-/* 9. ERROR MESSAGE */
+/* -------------------- ERROR-MESSAGE -------------------- */
 .error-message {
     color: red;
     font-weight: bold;
@@ -162,15 +72,43 @@ button:hover {
     text-align: center;
 }
 
-/* 10. RESPONSIVENESS */
-@media (max-width: 900px) {
-    .form-group {
-        flex-direction: column;
-        align-items: center;
-    }
+/* -------------------- CONTAINER -------------------- */
 
-    .form-field {
-        flex: 1 1 80%;
-        min-width: 100%;
-    }
+.container {
+    background-color: #ffffff !important;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 10px;
 }
+
+input, select, textarea, .btn {
+    background-color: rgba(40, 167, 69, 0.07) !important;
+    border: none !important;
+    color: black !important;
+    font-weight: bold !important;
+}
+
+textarea {
+    height: 300px !important;
+    resize: none !important;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: #99d2e9 !important;
+    border: none !important;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.circle-image {
+    width: 500px;
+    height: auto;
+    border-radius: 50%;
+}
+
+
+

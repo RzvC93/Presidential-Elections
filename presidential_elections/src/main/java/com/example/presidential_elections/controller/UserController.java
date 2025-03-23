@@ -5,10 +5,12 @@ import com.example.presidential_elections.model.Candidacy;
 import com.example.presidential_elections.model.User;
 import com.example.presidential_elections.service.CandidacyService;
 import com.example.presidential_elections.service.UserService;
+import com.example.presidential_elections.service.VoteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
 import java.util.List;
 
 @Controller
@@ -17,90 +19,41 @@ public class UserController {
 
     private final UserService userService;
     private final CandidacyService candidacyService;
+    private final VoteService voteService;
 
-    public UserController(UserService userService, CandidacyService candidacyService) {
+    public UserController(UserService userService, CandidacyService candidacyService, VoteService voteService) {
         this.userService = userService;
         this.candidacyService = candidacyService;
+        this.voteService = voteService;
     }
 
-    // home
+    // ===================== GENERAL PAGES =====================
+
     @GetMapping("/home")
     public String showHomePage(Model model) {
-        List<Candidacy> candidacies = candidacyService.getAllCandidacies();
-        model.addAttribute("candidacies", candidacies);
+        List<Candidacy> candidates;
+
+        if (voteService.getNextRoundCandidates() != null) {
+            candidates = voteService.getNextRoundCandidates();
+        } else {
+            candidates = candidacyService.getAllCandidacies();
+        }
+
+        model.addAttribute("candidacies", candidates);
+        model.addAttribute("voteOver", voteService.isVoteOver());
+        model.addAttribute("winner", voteService.getWinner());
+        model.addAttribute("votingMessage", voteService.getVotingMessage());
+
         return "home";
     }
 
-    // about
     @GetMapping("/about")
     public String about() {
         return "about";
     }
 
-    // profile
-    @GetMapping("/profile")
-    public String showPersonalProfile(HttpSession session, Model model) {
-        String username = (String) session.getAttribute("loggedInUser");
-        String loggedInUsername = (String) session.getAttribute("loggedInUser");
+    // ===================== AUTH =====================
 
-        User user = userService.findByUsername(username);
-        Candidacy candidacy = candidacyService.findByUserUsername(loggedInUsername);
-
-        model.addAttribute("user", user);
-        model.addAttribute("candidacy", candidacy);
-
-        return "profile";
-    }
-
-    // update
-    @GetMapping("/update-profile")
-    public String showUpdateForm(Model model, HttpSession session) {
-        String username = (String) session.getAttribute("loggedInUser");
-        User user = userService.findByUsername(username);
-        model.addAttribute("user", user);
-        return "update-profile";
-    }
-
-    @PostMapping("/update-profile")
-    public String updateUser(@ModelAttribute("user") UserDTO userDTO, HttpSession session, Model model) {
-        try {
-            String loggedInUsername = (String) session.getAttribute("loggedInUser");
-
-            userService.updateUser(loggedInUsername, userDTO);
-
-            model.addAttribute("error", "Profile updated successfully.");
-
-        } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
-        }
-        return "update-profile";
-    }
-
-    // delete
-    @GetMapping("/delete-account")
-    public String showDeleteForm(Model model) {
-        model.addAttribute("user", new UserDTO());
-        return "delete-account";
-    }
-
-    @PostMapping("/delete-account")
-    public String deleteAccount(@RequestParam String username, HttpSession session, Model model) {
-        try {
-            String loggedInUsername = (String) session.getAttribute("loggedInUser");
-
-            userService.deleteUser(username, loggedInUsername);
-
-            session.invalidate();
-
-            return "redirect:/user/login";
-
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "delete-account";
-        }
-    }
-
-    // signup
     @GetMapping("/signup")
     public String showSignupPage() {
         return "signup";
@@ -117,7 +70,6 @@ public class UserController {
         }
     }
 
-    // login
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
@@ -141,5 +93,66 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/user/home";
+    }
+
+    // ===================== PROFILE =====================
+
+    @GetMapping("/profile")
+    public String showPersonalProfile(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("loggedInUser");
+
+        User user = userService.findByUsername(username);
+        Candidacy candidacy = candidacyService.findByUserUsername(username);
+
+        model.addAttribute("user", user);
+        model.addAttribute("candidacy", candidacy);
+
+        return "profile";
+    }
+
+    @GetMapping("/update-profile")
+    public String showUpdateForm(Model model, HttpSession session) {
+        String username = (String) session.getAttribute("loggedInUser");
+        User user = userService.findByUsername(username);
+
+        model.addAttribute("user", user);
+        return "update-profile";
+    }
+
+    @PostMapping("/update-profile")
+    public String updateUser(@ModelAttribute("user") UserDTO userDTO, HttpSession session, Model model) {
+        try {
+            String username = (String) session.getAttribute("loggedInUser");
+
+            userService.updateUser(username, userDTO);
+
+            model.addAttribute("error", "Profile updated successfully.");
+        } catch (RuntimeException e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return "update-profile";
+    }
+
+    // ===================== DELETE ACCOUNT =====================
+
+    @GetMapping("/delete-account")
+    public String showDeleteForm(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "delete-account";
+    }
+
+    @PostMapping("/delete-account")
+    public String deleteAccount(@RequestParam String username, HttpSession session, Model model) {
+        try {
+            String loggedInUsername = (String) session.getAttribute("loggedInUser");
+
+            userService.deleteUser(username, loggedInUsername);
+            session.invalidate();
+
+            return "redirect:/user/login";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "delete-account";
+        }
     }
 }

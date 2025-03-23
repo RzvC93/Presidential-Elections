@@ -11,21 +11,15 @@ import java.util.List;
 public class User {
 
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            generator = "user_sequence",
-            strategy = GenerationType.SEQUENCE
-    )
+    @SequenceGenerator(name = "user_sequence", allocationSize = 1)
+    @GeneratedValue(generator = "user_sequence", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Candidacy candidacy;
 
-    @OneToOne(mappedBy = "voter", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Vote vote;
+    @OneToMany(mappedBy = "voter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vote> votes = new ArrayList<>();
 
     private String firstName;
     private String middleName;
@@ -40,8 +34,6 @@ public class User {
     @Column(length = 1000)
     private String aboutMe;
     private String password;
-
-
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Long getId() {
@@ -146,5 +138,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Candidacy getCandidacy() {
+        return candidacy;
+    }
+
+    public void setCandidacy(Candidacy candidacy) {
+        this.candidacy = candidacy;
     }
 }

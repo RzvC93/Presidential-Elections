@@ -5,78 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="/about.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 
-<h1>About Presidential Elections Project</h1>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/about">About</a>
+                </li>
 
-<nav>
-    <a href="/user/home">Home</a>
-    <a href="/user/about">About</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/update-profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/delete-account">Delete Account</a></li>
+                    </ul>
+                </li>
 
-    <div class="dropdown">
-        <button class="dropbtn">User</button>
-        <div class="dropdown-content">
-            <a href="/user/profile">Profile</a>
-            <a href="/user/update-profile">Update Profile</a>
-            <a href="/user/delete-account">Delete Account</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Candidacy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/candidacy/candidate-application">Submit</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/update-candidacy">Update</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/withdraw-candidacy">Withdraw</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/candidates-list">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Sign Out</a>
+                </li>
+
+            </ul>
         </div>
     </div>
-
-    <div class="dropdown">
-        <button class="dropbtn">Candidacy</button>
-        <div class="dropdown-content">
-            <a href="/user/candidacy/candidate-application">Submit your candidacy</a>
-            <a href="/user/candidacy/update-candidacy">Update Candidacy</a>
-            <a href="/user/candidacy/withdraw-candidacy">Withdraw Candidacy</a>
-            <a href="/user/candidacy/candidates-list">Candidates List</a>
-        </div>
-    </div>
-
-    <a href="/user/logout">Sign Out</a>
 </nav>
 
-<div class="about-container">
-    <section class="project-description">
-        <h2>Project Overview</h2>
-        <p>This project aims to create a transparent and secure platform for the presidential election process.
-            Users can register as voters or candidates, vote for their chosen candidate, and track election results.
-            The goal is to simplify the process of participating in elections and make it more accessible to
-            everyone.</p>
-    </section>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="text-center mb-3 text-warning">
+                <i class="fas fa-project-diagram"></i> Project Overview
+            </h1>
+            <p class="text-justify">
+                <i class="fas fa-info-circle"></i> This project aims to create a transparent and secure platform for the presidential election process.
+                Users can register as voters or candidates, vote for their chosen candidate, and track election results.
+                The goal is to simplify the process of participating in elections and make it more accessible to everyone.
+            </p>
+        </div>
+    </div>
 
-    <section class="team-roles">
-        <h2>Roles in the Project</h2>
-        <p>This project was developed by a dedicated team of individuals with different expertise:</p>
-        <ul>
-            <li><strong>Project Manager:</strong> Responsible for overseeing the project, managing deadlines, and
-                ensuring the smooth execution of all phases.
-            </li>
-            <li><strong>Frontend Developer:</strong> In charge of designing and implementing the user interface for the
-                platform.
-            </li>
-            <li><strong>Backend Developer:</strong> Developed the core functionality, including user management,
-                authentication, and the election logic.
-            </li>
-            <li><strong>UI/UX Designer:</strong> Focused on creating a user-friendly and aesthetically pleasing
-                interface for a better user experience.
-            </li>
-            <li><strong>Tester:</strong> Responsible for testing the platform and ensuring that all features function
-                correctly before launch.
-            </li>
-        </ul>
-    </section>
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="text-center mb-3 text-primary">
+                <i class="fas fa-users"></i> Roles in the Project
+            </h1>
+            <p class="text-justify">
+                <i class="fas fa-users"></i> This project was developed by a dedicated team of individuals with different expertise:
+            </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-tasks"></i> <strong>Project Manager:</strong> Responsible for overseeing the project, managing deadlines, and ensuring the smooth execution of all phases.
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-laptop-code"></i> <strong>Frontend Developer:</strong> In charge of designing and implementing the user interface for the platform.
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-cogs"></i> <strong>Backend Developer:</strong> Developed the core functionality, including user management, authentication, and the election logic.
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-pencil-ruler"></i> <strong>UI/UX Designer:</strong> Focused on creating a user-friendly and aesthetically pleasing interface for a better user experience.
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-bug"></i> <strong>Tester:</strong> Responsible for testing the platform and ensuring that all features function correctly before launch.
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    <section class="contact-info">
-        <h2>Contact Information</h2>
-        <p>If you have any questions, suggestions, or want to get in touch with the team, feel free to contact us:</p>
-        <ul>
-            <li><strong>Email:</strong> rzv.c93@outlook.com</li>
-            <li><strong>Phone:</strong> +44 7764 712 307</li>
-            <li><strong>Address:</strong> 57 Greenhill Road HA1 1LD london UK</li>
-        </ul>
-    </section>
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mb-3 text-success">
+                <i class="fas fa-phone-alt"></i> Contact Information
+            </h1>
+            <p class="text-justify">
+                <i class="fas fa-phone-alt"></i> If you have any questions, suggestions, or want to get in touch with the team, feel free to contact us:
+            </p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-envelope"></i> <strong>Email:</strong> rzv.c93@outlook.com
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +44 7764 712 307
+                </li>
+                <li class="list-group-item bg-transparent">
+                    <i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 57 Greenhill Road HA1 1LD London, UK
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image-container mt-4 text-center">
+        <img src="/images/about.gif" class="circle-image" alt="About Image">
+    </div>
 </div>
-
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

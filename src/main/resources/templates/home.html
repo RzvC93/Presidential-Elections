@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/home.css}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" th:if="${session.loggedInUser}">
+                    <a class="nav-link" href="/user/home">Home</a>
+                </li>
+                <li class="nav-item" th:if="${session.loggedInUser}">
+                    <a class="nav-link" href="/user/about">About</a>
+                </li>
+
+                <li class="nav-item dropdown" th:if="${session.loggedInUser}">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/update-profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/delete-account">Delete Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown" th:if="${session.loggedInUser}">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Candidacy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/candidacy/candidate-application">Submit</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/update-candidacy">Update</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/withdraw-candidacy">Withdraw</a></li>
+                        <li><a class="dropdown-item" href="/vote/candidates-list">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item" th:if="${session.loggedInUser}">
+                    <a class="nav-link" href="/user/logout">Sign Out</a>
+                </li>
+
+                <li class="nav-item" th:unless="${session.loggedInUser}">
+                    <a class="nav-link" href="/user/login">Login</a>
+                </li>
+                <li class="nav-item" th:unless="${session.loggedInUser}">
+                    <a class="nav-link" href="/user/signup">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5 election-description text-center">
+    <h1 class="section-title">
+        <i class="fas fa-crown"></i> Welcome to the Presidential Elections! <i class="fas fa-crown"></i>
+    </h1>
+    <div class="section-separator"></div>
+    <p>📋 Here you can see the list of <strong>candidates</strong> and vote 🗳️ for your favorite.</p>
+    <p>🔐 To <strong>vote</strong> or view candidate profiles 👤, please <strong>log in</strong> 🔑.</p>
+    <p>💡 Your <strong>vote matters</strong>. Each vote has the power to shape the future 🌍.</p>
+    <p>🤝 Your participation helps create a fair ⚖️ and representative leadership 🏛️.</p>
+    <p>🚀 Ready to make your voice heard? Join now and take part in a <strong>transparent election</strong> 🔎!</p>
+    <p><small>🛡️ We respect your <strong>data privacy</strong>. Your info is protected under GDPR
+        regulations.</small></p>
+</div>
+
+<div class="alerts-container my-3">
+    <div th:if="${error != null}"
+         class="custom-voting-status alert-temporary alert-danger text-center fw-bold fs-5">
+        <span th:utext="${error}"></span>
+    </div>
+    <div th:if="${success != null}"
+         class="custom-voting-status alert-temporary alert-success text-center fw-bold fs-5">
+        <span th:utext="${success}"></span>
+    </div>
+</div>
+
+<div class="transition-container text-center my-5">
+    <h1 class="animated-title">Check out the top candidates!</h1>
+    <div class="scroll-indicator">
+        <i class="fas fa-arrow-down animated-arrow"></i>
+    </div>
+</div>
+
+<div class="hub-section-wrapper" style="position: relative;">
+    <div th:if="${!isLoggedIn}" class="login-overlay-container">
+        <div class="login-overlay-content">
+            <i class="fas fa-lock lock-icon"></i>
+            <h2 class="login-overlay-title">Access the Election Hub</h2>
+            <p class="login-overlay-subtitle">Log in or create an account to explore stats and history.</p>
+            <div class="login-overlay-buttons">
+                <a href="/user/login" class="btn btn-primary me-2">Log In</a>
+                <a href="/user/signup" class="btn btn-outline-secondary">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="universal-preview container mt-5 mb-5"
+         onclick="location.href='/vote/candidates-list'"
+         th:classappend="${isLoggedIn} ? 'logged-in' : 'not-logged-blur'">
+        <h1 class="section-title">
+            <i class="fas fa-vote-yea"></i> Explore the Election Hub <i class="fas fa-vote-yea"></i>
+        </h1>
+        <div class="section-separator"></div>
+
+        <p class="text-muted fs-5">
+            View candidates, voting results, and round summaries — all in one place.
+        </p>
+    </div>
+</div>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alerts = document.querySelectorAll(".custom-voting-status.alert-temporary");
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.classList.add("fade-out-down");
+                setTimeout(() => alert.remove(), 600);
+            }, 4000); // 4 secunde pe ecran
+        });
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const emojiButtons = document.querySelectorAll(".emoji-btn");
+    const candidateBlocks = document.querySelectorAll(".candidates-block");
+    const displayContainer = document.getElementById("candidates-display");
+    displayContainer.style.display = "none";
+    emojiButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const selected = btn.getAttribute("data-position");
+            displayContainer.style.display = "block";
+            candidateBlocks.forEach(block => {
+                block.style.display = "none";
+            });
+            const toShow = document.querySelector(`.candidates-block[data-position="${selected}"]`);
+            if (toShow) {
+                toShow.style.display = "block";
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

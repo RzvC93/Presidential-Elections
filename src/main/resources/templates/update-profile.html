@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" th:href="@{/update-profile.css}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/about">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/update-profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/delete-account">Delete Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Candidacy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/candidacy/candidate-application">Submit</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/update-candidacy">Update</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/withdraw-candidacy">Withdraw</a></li>
+                        <li><a class="dropdown-item" href="/vote/candidates-list">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Sign Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form action="/user/update-profile" method="post" class="container mt-5 update-profile-container" th:object="${user}">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+    <h1 class="main-title">
+        <i class="fas fa-user-edit"></i> Update Profile
+    </h1>
+    <hr class="section-divider">
+
+    <div class="alerts-container my-3">
+        <div th:if="${error != null}"
+             class="custom-voting-status alert-temporary alert-danger text-center fw-bold fs-5">
+            <span th:utext="${error}"></span>
+        </div>
+
+        <div th:if="${success != null}"
+             class="custom-voting-status alert-temporary alert-success text-center fw-bold fs-5">
+            <span th:utext="${success}"></span>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-blue-header">
+            <i class="fas fa-id-badge"></i> Profile Details
+        </div>
+        <div class="section-body bg-blue-light">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{firstName}" id="firstName" class="form-control"
+                               placeholder="First Name" required>
+                        <label for="firstName"><i class="fas fa-user"></i> First Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{middleName}" id="middleName" class="form-control"
+                               placeholder="Middle Name">
+                        <label for="middleName"><i class="fas fa-user"></i> Middle Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{lastName}" id="lastName" class="form-control"
+                               placeholder="Last Name" required>
+                        <label for="lastName"><i class="fas fa-user"></i> Last Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{username}" id="username" class="form-control"
+                               placeholder="Username" required>
+                        <label for="username"><i class="fas fa-user-tag"></i> Username</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="email" th:field="*{email}" id="email" class="form-control" placeholder="Email"
+                               required>
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" th:field="*{age}" id="age" class="form-control" placeholder="Age" required>
+                        <label for="age"><i class="fas fa-calendar-alt"></i> Age</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <select th:field="*{gender}" id="gender" class="form-select" required>
+                            <option value="" disabled>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{address}" id="address" class="form-control" placeholder="Address"
+                               required>
+                        <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" th:field="*{phoneNumber}" id="phoneNumber" class="form-control"
+                               placeholder="Phone Number" required>
+                        <label for="phoneNumber"><i class="fas fa-phone-alt"></i> Phone Number</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-cyan-header">
+            <i class="fas fa-user-alt"></i> About Me
+        </div>
+        <div class="section-body bg-cyan-light">
+            <div class="form-floating">
+                <textarea th:field="*{aboutMe}" id="aboutMe" rows="4" class="form-control"
+                          placeholder="Tell us about yourself..."></textarea>
+                <label for="aboutMe"><i class="fas fa-pencil-alt"></i> Tell us about yourself</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-yellow-header">
+            <i class="fas fa-lock"></i> Change Password (Optional)
+        </div>
+        <div class="section-body bg-yellow-light">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="password" name="oldPassword" id="oldPassword" class="form-control"
+                               placeholder="Current Password">
+                        <label for="oldPassword"><i class="fas fa-lock"></i> Current Password</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="password" name="newPassword" id="newPassword" class="form-control"
+                               placeholder="New Password">
+                        <label for="newPassword"><i class="fas fa-lock"></i> New Password</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="password" name="confirmNewPassword" id="confirmNewPassword" class="form-control"
+                               placeholder="Confirm New Password">
+                        <label for="confirmNewPassword"><i class="fas fa-lock"></i> Confirm New Password</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="update-btn">
+            <i class="fas fa-save"></i> Update
+        </button>
+    </div>
+</form>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alerts = document.querySelectorAll(".custom-voting-status.alert-temporary");
+
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.classList.add("fade-out-down");
+                setTimeout(() => alert.remove(), 600);
+            }, 4000);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Profile</title>
+    <link rel="stylesheet" th:href="@{/candidate-profile.css}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/about">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/update-profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/delete-account">Delete Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Candidacy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/candidacy/candidate-application">Submit</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/update-candidacy">Update</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/withdraw-candidacy">Withdraw</a></li>
+                        <li><a class="dropdown-item" href="/vote/candidates-list">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Sign Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container profile-container mt-5">
+    <h1 class="main-title text-primary">
+        <i class="fas fa-id-card"></i> Meet the Candidate
+    </h1>
+    <hr class="section-divider">
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-6 d-flex" th:if="${candidacy != null}">
+            <div class="card candidacy-card w-100">
+                <div class="card-header bg-primary text-white text-center fs-4 fw-bold rounded-top">
+                    <i class="fas fa-briefcase"></i> Candidacy
+                </div>
+                <div class="card-body text-center">
+                    <div class="profile-image-wrapper">
+                        <img th:src="@{'/uploads/' + ${candidacy.profilePicture}}" class="profile-image"
+                             alt="Profile Picture">
+                    </div>
+                    <p><i class="fas fa-id-badge"></i> <strong>Position:</strong> <span
+                            th:text="${candidacy.position}"></span></p>
+                    <p><i class="fas fa-align-left"></i> <strong>Description:</strong> <span
+                            th:text="${candidacy.description}"></span></p>
+                    <p><i class="fas fa-pen"></i> <strong>Slogan:</strong> <span th:text="${candidacy.slogan}"></span>
+                    </p>
+                    <p><i class="fas fa-users"></i> <strong>Party:</strong> <span
+                            th:text="${candidacy.politicalParty}"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex">
+            <div class="card personal-card w-100">
+                <div class="card-header bg-success text-white text-center fs-4 fw-bold rounded-top">
+                    <i class="fas fa-id-card"></i> Personal Details
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <p><i class="fas fa-user"></i> <strong>First Name:</strong> <span
+                                    th:text="${user.firstName}"></span></p>
+                            <p><i class="fas fa-user"></i> <strong>Middle Name:</strong> <span
+                                    th:text="${user.middleName}"></span></p>
+                            <p><i class="fas fa-user"></i> <strong>Last Name:</strong> <span
+                                    th:text="${user.lastName}"></span></p>
+                            <p><i class="fas fa-user-circle"></i> <strong>Username:</strong> <span
+                                    th:text="${user.username}"></span></p>
+                            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span
+                                    th:text="${user.email}"></span></p>
+                        </div>
+                        <div class="col-6">
+                            <p><i class="fas fa-birthday-cake"></i> <strong>Age:</strong> <span
+                                    th:text="${user.age}"></span></p>
+                            <p><i class="fas fa-venus-mars"></i> <strong>Gender:</strong> <span
+                                    th:text="${user.gender}"></span></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> <span
+                                    th:text="${user.address}"></span></p>
+                            <p><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> <span
+                                    th:text="${user.phoneNumber}"></span></p>
+                        </div>
+                    </div>
+                    <div class="about-box mt-3">
+                        <p><i class="fas fa-info-circle"></i> <strong>About Me:</strong></p>
+                        <em th:text="${user.aboutMe}"></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

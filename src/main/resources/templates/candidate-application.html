@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Application Form</title>
+    <link rel="stylesheet" href="/candidate-application.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/about">About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">User</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/update-profile">Update Profile</a></li>
+                        <li><a class="dropdown-item" href="/user/delete-account">Delete Account</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Candidacy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/user/candidacy/candidate-application">Submit</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/update-candidacy">Update</a></li>
+                        <li><a class="dropdown-item" href="/user/candidacy/withdraw-candidacy">Withdraw</a></li>
+                        <li><a class="dropdown-item" href="/vote/candidates-list">List</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">Sign Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form action="/user/candidacy/candidate-application" method="post" enctype="multipart/form-data"
+      class="container mt-5 candidate-form-container">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+    <h1 class="main-title">
+        <i class="fas fa-user-check"></i> Candidate Application
+    </h1>
+    <hr class="section-divider">
+
+    <div class="alerts-container my-3">
+        <div th:if="${error != null}"
+             class="custom-voting-status alert-temporary alert-danger text-center fw-bold fs-5">
+            <span th:utext="${error}"></span>
+        </div>
+
+        <div th:if="${success != null}"
+             class="custom-voting-status alert-temporary alert-success text-center fw-bold fs-5">
+            <span th:utext="${success}"></span>
+        </div>
+    </div>
+
+    <div class="alert alert-info text-center" role="alert">
+        <i class="fas fa-info-circle"></i>
+        Please answer the following questions honestly and accurately.
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-blue-header">
+            <i class="fas fa-landmark"></i> Political Candidacy Information
+        </div>
+        <div class="section-body bg-blue-light">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="country" name="country" required>
+                    <option value="">Choose a country</option>
+                    <option value="Romania">Romania</option>
+                    <option value="USA">United States</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Japan">Japan</option>
+                </select>
+                <label for="country"><i class="fas fa-globe"></i> Select Country</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="position" name="position" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Mayor">Mayor</option>
+                    <option value="Counselor">Counselor</option>
+                    <option value="President">President</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label for="position"><i class="fas fa-briefcase"></i> Position Title</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="description" name="description" placeholder="Description"
+                          style="height: 100px" required></textarea>
+                <label for="description"><i class="fas fa-align-left"></i> Description</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="slogan" name="slogan" placeholder="Slogan" required>
+                <label for="slogan"><i class="fas fa-bullhorn"></i> Slogan</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="politicalParty" name="politicalParty" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="PSD">PSD</option>
+                    <option value="AUR">AUR</option>
+                    <option value="PNL">PNL</option>
+                    <option value="USR">USR</option>
+                    <option value="POT">POT</option>
+                    <option value="UDMR">UDMR</option>
+                    <option value="OTHER">OTHER</option>
+                </select>
+                <label for="politicalParty"><i class="fas fa-users"></i> Political Party</label>
+            </div>
+
+            <div class="mb-3">
+                <label for="profilePicture" class="form-label"><i class="fas fa-image"></i> Profile Picture</label>
+                <input type="file" class="form-control" id="profilePicture" name="profilePicture" accept="image/*"
+                       required>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-yellow-header">
+            <i class="fas fa-balance-scale"></i> Legal Questions
+        </div>
+        <div class="section-body bg-yellow-light">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="criminalRecord" name="criminalRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="criminalRecord">Have you ever been convicted of a crime?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="arrestRecord" name="arrestRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="arrestRecord">Have you ever been arrested?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="investigationRecord" name="investigationRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="investigationRecord">Involved in criminal investigations?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="pendingCharges" name="pendingCharges" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="pendingCharges">Any pending criminal charges?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="terrorismRecord" name="terrorismRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="terrorismRecord">Involvement in terrorism or extremist activities?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="bankruptcyRecord" name="bankruptcyRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="bankruptcyRecord">Declared personal or business bankruptcy?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="taxDebtRecord" name="taxDebtRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="taxDebtRecord">Do you owe any unpaid taxes or government debts?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="disqualificationRecord" name="disqualificationRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="disqualificationRecord">Disqualified from holding public office?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="corruptionRecord" name="corruptionRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="corruptionRecord">Involvement in corruption or bribery?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="humanRightsViolation" name="humanRightsViolation" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="humanRightsViolation">Accused of human rights violations?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="expulsionRecord" name="expulsionRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="expulsionRecord">Expelled from any organization or institution?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="organizedCrimeRecord" name="organizedCrimeRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="organizedCrimeRecord">Ties to organized crime groups?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="fraudRecord" name="fraudRecord" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="fraudRecord">Accused or convicted of fraud?</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select class="form-select" id="legalDisputes" name="legalDisputes" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label for="legalDisputes">Do you have any ongoing legal disputes?</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header bg-green-header">
+            <i class="fas fa-scroll"></i> Terms and Conditions
+        </div>
+        <div class="section-body bg-green-light">
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="termsConditions" readonly style="height: 120px">
+Please read and agree to the following:
+1. You must be a citizen of the country.
+2. You must not have any criminal record.
+3. You must be at least 18 years old.
+                </textarea>
+                <label for="termsConditions"><i class="fas fa-file-contract"></i> Terms and Conditions</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="agreedTerms" name="agreedTerms" required>
+                <label class="form-check-label" for="agreedTerms">
+                    <i class="fas fa-check-circle"></i> I agree to the terms and conditions
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Candidacy
+        </button>
+    </div>
+</form>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alerts = document.querySelectorAll(".custom-voting-status.alert-temporary");
+
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.classList.add("fade-out-down");
+                setTimeout(() => alert.remove(), 600);
+            }, 4000); // 4 secunde pe ecran
+        });
+    });
+</script>
+</body>
+</html>

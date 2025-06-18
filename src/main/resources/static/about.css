@@ -1,0 +1,152 @@
+/* -------------------- GENERAL -------------------- */
+body {
+    background-color: rgb(240, 240, 240) !important;
+    font-family: 'Arial';
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 40px 0 40px;
+    color: #8e8e8e !important;
+}
+
+/* -------------------- NAVBAR -------------------- */
+.navbar {
+    margin-top: 0px;
+    background-color: #333333 !important;
+    padding: 15px 30px;
+}
+
+.navbar .nav-link {
+    color: #e0e0e0 !important;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    border-radius: 10px;
+}
+
+.dropdown-menu {
+    background-color: #333333 !important;
+    border: none !important;
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    background-color: #333333 !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px;
+}
+
+.navbar-toggler-icon {
+    background-color: #e0e0e0 !important;
+}
+
+button:hover {
+    background-color: #e0e0e0 !important;
+    border-color: #99d2e9;
+}
+
+/* -------------------- MAIN TITLE -------------------- */
+.main-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #3366cc !important;
+    margin-bottom: 0.5rem;
+}
+
+.main-title i {
+    margin-right: 0.5rem;
+    color: #3366cc !important;
+}
+
+/* -------------------- TITLE SEPARATOR -------------------- */
+.section-divider {
+    border: none;
+    height: 4px;
+    background-color: #c7d1f5;
+    max-width: 90%;
+    width: 700px;
+    margin: 0 auto 2rem;
+    border-radius: 5px;
+}
+
+/* -------------------- ABOUT PAGE -------------------- */
+.about-section {
+    background: #fff !important;
+    border-left: 6px solid #495057 !important;
+    border-right: 6px solid #495057 !important;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+/* -------------------- SECTION CARD -------------------- */
+.section-card {
+    background-color: #f7faff;
+    border-radius: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* -------------------- SECTION HEADER -------------------- */
+.section-header {
+    background-color: #4169e1;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* -------------------- SECTION BODY -------------------- */
+.section-body {
+    padding: 1.5rem;
+    background-color: #f2f6ff;
+}
+
+/* -------------------- LIGHT BACKGROUNDS -------------------- */
+.bg-blue-light {
+    background-color: #f2f6ff;
+}
+
+.bg-purple-light {
+    background-color: #f5f2ff;
+}
+
+.bg-green-light {
+    background-color: #f1fbf4;
+}
+
+/* -------------------- HEADER COLORS -------------------- */
+.bg-blue-header {
+    background-color: #4169e1;
+}
+
+.bg-purple-header {
+    background-color: #6a50a7;
+}
+
+.bg-green-header {
+    background-color: #397d54;
+}

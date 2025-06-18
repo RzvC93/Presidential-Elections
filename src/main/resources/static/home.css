@@ -1,0 +1,272 @@
+/* -------------------- GENERAL -------------------- */
+body {
+    background-color: rgb(240, 240, 240) !important;
+    font-family: 'Arial';
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 40px 0 40px;
+    color: #8e8e8e !important;
+}
+
+/* -------------------- NAVBAR -------------------- */
+.navbar {
+    margin-top: 0px;
+    background-color: #333333 !important;
+    padding: 15px 30px;
+}
+
+.navbar .nav-link {
+    color: #e0e0e0 !important;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    border-radius: 10px;
+}
+
+.dropdown-menu {
+    background-color: #333333 !important;
+    border: none !important;
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    background-color: #333333 !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px;
+}
+
+.navbar-toggler-icon {
+    background-color: #e0e0e0 !important;
+}
+
+button:hover {
+    background-color: #e0e0e0 !important;
+    border-color: #99d2e9;
+}
+
+/* ========== Shared Container Style ========== */
+.election-description,
+.universal-preview,
+.position-selector-container,
+.position-section {
+    background: #fff;
+    border-left: 6px solid #495057;
+    border-right: 6px solid #495057;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+/* ========== Section Title Style ========== */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ========== Section Separator ========== */
+.section-separator {
+    height: 3px;
+    width: 60%;
+    margin: 0 auto 1.5rem auto;
+    background-color: rgba(73, 80, 87, 0.2);
+}
+
+/* ========== TEMPORARY STATUS MESSAGES ========== */
+.custom-voting-status {
+    border-left: 6px solid #ccc;
+    border-right: 6px solid #ccc;
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin: 1.5rem auto 2rem auto;
+    font-size: 1.15rem;
+    font-weight: 600;
+    width: 60%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: drop-in 0.7s ease-out;
+    transition: all 0.5s ease-in-out;
+    z-index: 999;
+}
+
+.custom-voting-status.alert-temporary {
+    width: 60%;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.alert-success {
+    background-color: #e6fcef;
+    color: #14532d;
+    border-left-color: #34d399;
+    border-right-color: #34d399;
+}
+
+.alert-danger {
+    background-color: #ffe6e6;
+    color: #7f1d1d;
+    border-left-color: #ff4d4d;
+    border-right-color: #ff4d4d;
+}
+
+@keyframes drop-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.95);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(10px) scale(1.02);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.fade-out-down {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.6s ease-in-out;
+}
+
+/* ========== Scroll Indicator Animation ========== */
+.animated-title,
+.animated-arrow {
+    animation: bounce 1s ease infinite;
+    font-weight: bold;
+    font-size: 40px;
+    color: #8e8e8e !important;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(15px);
+    }
+}
+
+/* ========== Login Overlay Transparent ========== */
+.login-overlay-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    text-align: center;
+    pointer-events: none;
+    animation: fadeInOverlay 0.6s ease-out;
+    width: 100%;
+    max-width: 600px;
+}
+
+.login-overlay-content {
+    background: transparent;
+    backdrop-filter: none;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: none;
+    pointer-events: all;
+}
+
+.lock-icon {
+    font-size: 3rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.login-overlay-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.login-overlay-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.login-overlay-buttons .btn {
+    min-width: 120px;
+    margin: 0 8px;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ========== Blur for Logged-Out Users ========== */
+.not-logged-blur {
+    filter: blur(3.5px);
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ========== Restricted Badge ========== */
+.restricted-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: rgba(255, 0, 0, 0.85);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 40;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+/* ========== Hover Effect for Election Hub ========== */
+.universal-preview.logged-in {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.universal-preview.logged-in:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
+}

@@ -1,0 +1,153 @@
+/* -------------------- GENERAL -------------------- */
+body {
+    background-color: rgb(240, 240, 240) !important;
+    font-family: 'Arial';
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 40px 0 40px;
+    color: #8e8e8e !important;
+}
+
+/* -------------------- NAVBAR -------------------- */
+.navbar {
+    margin-top: 0px;
+    background-color: #333333 !important;
+    padding: 15px 30px;
+}
+
+.navbar .nav-link {
+    color: #e0e0e0 !important;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    border-radius: 10px;
+}
+
+.dropdown-menu {
+    background-color: #333333 !important;
+    border: none !important;
+}
+
+.dropdown-item {
+    color: #e0e0e0 !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    background-color: #333333 !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px;
+}
+
+.navbar-toggler-icon {
+    background-color: #e0e0e0 !important;
+}
+
+button:hover {
+    background-color: #e0e0e0 !important;
+    border-color: #99d2e9;
+}
+
+/* -------------------- PROFILE CONTAINER -------------------- */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff !important;
+    border-left: 6px solid #495057 !important;
+    border-right: 6px solid #495057 !important;
+    padding: 2rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+}
+
+.personal-card, .candidacy-card {
+    max-width: 100%;
+}
+
+/* -------------------- MAIN TITLE -------------------- */
+.main-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #3366cc !important;
+    margin-bottom: 0.5rem;
+}
+
+.main-title i {
+    margin-right: 0.5rem;
+    color: #3366cc !important;
+}
+
+/* -------------------- TITLE SEPARATOR -------------------- */
+.section-divider {
+    border: none;
+    height: 4px;
+    background-color: #c7d1f5;
+    max-width: 90%;
+    width: 700px;
+    margin: 0 auto 2rem;
+    border-radius: 5px;
+}
+
+/* -------------------- CANDIDACY CARD -------------------- */
+.candidacy-card {
+    background-color: #eef6ff !important;
+    border-left: 5px solid #0d6efd;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------- PERSONAL DETAILS CARD -------------------- */
+.personal-card {
+    background-color: #f3fbf5 !important;
+    border-left: 5px solid #198754;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------- PROFILE IMAGE -------------------- */
+.profile-image-wrapper {
+    width: 160px;
+    height: 160px;
+    margin: 1rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #0d6efd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* -------------------- ABOUT ME BOX -------------------- */
+.about-box {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* -------------------- EQUAL CARD HEIGHT -------------------- */
+.card {
+    height: 100%;
+}
